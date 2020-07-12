@@ -71,7 +71,9 @@ public class RemoteTranslateActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         try {
             this.srcLanguage = intent.getStringExtra(Constant.SOURCE_VALUE);
+            //SmartLog.i(TAG, "RemoteTranslateActivity SOURCE_VALUE: " + this.srcLanguage);
             this.dstLanguage = intent.getStringExtra(Constant.DEST_VALUE);
+            //SmartLog.i(TAG, "RemoteTranslateActivity DEST_VALUE: " + this.dstLanguage);
         } catch (RuntimeException e) {
             SmartLog.e(RemoteTranslateActivity.TAG, "Get intent value failed:" + e.getMessage());
         }

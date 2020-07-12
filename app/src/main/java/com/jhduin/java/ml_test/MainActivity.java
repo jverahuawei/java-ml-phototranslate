@@ -22,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.huawei.hms.mlsdk.common.internal.client.SmartLog;
+import com.jhduin.java.ml_test.util.Constant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,13 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayAdapter<String> spDestAdapter;
 
     private void createSpinner() {
-        if (this.isEngLanguage()) {
             this.spSourceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.spSourceList_en);
             this.spDestAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.spDestList_en);
-        } else {
-            this.spSourceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.spSourceList);
-            this.spDestAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.spDestList);
-        }
+
 
         this.spSourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spSourceType.setAdapter(this.spSourceAdapter);
@@ -94,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean isEngLanguage() {
         Locale locale = Locale.getDefault();
+        SmartLog.i(MainActivity.TAG, "locale: " + locale);
         if (locale != null) {
             String strLan = locale.getLanguage();
             return strLan != null && MainActivity.EN.equals(strLan);
@@ -244,10 +242,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void translatePhoto() {
         Intent intent = new Intent(MainActivity.this, RemoteTranslateActivity.class);
-        String source_language = null;
-        intent.putExtra(source_language, this.srcLanguage);
-        String dest_language = null;
-        intent.putExtra(dest_language, this.dstLanguage);
+        intent.putExtra(Constant.SOURCE_VALUE, this.srcLanguage);
+        intent.putExtra(Constant.DEST_VALUE, this.dstLanguage);
         startActivity(intent);
     }
 
