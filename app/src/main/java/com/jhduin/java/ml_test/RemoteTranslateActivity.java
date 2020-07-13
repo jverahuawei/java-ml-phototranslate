@@ -293,6 +293,7 @@ public class RemoteTranslateActivity extends AppCompatActivity {
         Pair<Integer, Integer> targetedSize = this.getTargetSize();
         int targetWidth = targetedSize.first;
         int maxHeightOfImage = targetedSize.second;
+        SmartLog.i(TAG, "RemoteTranslateActivity imageUri: " + this.imageUri);
         this.originBitmap = BitmapUtils.loadFromPath(RemoteTranslateActivity.this, this.imageUri, targetWidth, maxHeightOfImage);
         // Determine how much to scale down the image.
         SmartLog.i(RemoteTranslateActivity.TAG, "resized image size width:" + this.originBitmap.getWidth() + ",height: " + this.originBitmap.getHeight());
